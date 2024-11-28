@@ -1,0 +1,22 @@
+{
+  "name": "timbenniks-contentstack-youtube-import",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@contentstack/app-sdk": "^2.1.1",
+    "@nuxt/fonts": "^0.10.2",
+    "@nuxtjs/tailwindcss": "^6.12.2",
+    "date-fns": "^4.1.0",
+    "nuxt": "3.14.1592",
+    "nuxt-jsoneditor": "^1.8.4",
+    "vue": "latest",
+    "vue-router": "latest"
+  }
+}
