@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@contentstack/app-sdk": "^2.1.1",
-    "@nuxt/fonts": "^0.10.2",
+    "@nuxt/fonts": "^0.10.3",
     "@nuxtjs/tailwindcss": "^6.12.2",
     "date-fns": "^4.1.0",
     "nuxt": "3.14.1592",

@@ -14,38 +14,41 @@ async function fetchVideo(video_id: string) {
 export default eventHandler(async (event) => {
   const query = getQuery(event)
   const video_id = query.video_id
-  let result;
-  let video;
-  if (video_id) {
-    video = await fetchVideo(video_id as string)
-    result = {
-      date: video.snippet.publishedAt,
-      uid: `video_entry_uid_${video_id}`,
-      title: video.snippet.title,
-      video_id: video_id,
-      description: video.snippet.description,
-      image: video.snippet.thumbnails?.maxres?.url,
-      tags: video.snippet.tags || [],
-      subject: '',
-      locale: "en-us",
-      created_at: video.snippet.publishedAt,
-      updated_at: video.snippet.publishedAt,
-      content_type_uid: "video",
-      publish_details: [
-        {
-          environment: "development",
-          locale: "en-us",
-          time: video.snippet.publishedAt,
-        },
-      ],
-      ACL: {},
-      _version: 1,
-      _in_progress: false,
-    }
-  }
-  else {
-    result = "no video_id"
+
+  if (!video_id) {
+    return { message: "no video_id given" }
   }
 
-  return result
+  const video = await fetchVideo(video_id as string)
+  const result = {
+    date: video.snippet.publishedAt,
+    uid: `video_entry_uid_${video_id}`,
+    title: video.snippet.title,
+    videoid: video_id,
+    description: video.snippet.description,
+    image: video.snippet.thumbnails?.maxres?.url,
+    tags: video.snippet.tags || [],
+    subject: '',
+    locale: "en-us",
+    created_at: video.snippet.publishedAt,
+    updated_at: video.snippet.publishedAt,
+    content_type_uid: "video",
+    publish_details: [
+      {
+        environment: "development",
+        locale: "en-us",
+        time: video.snippet.publishedAt,
+      },
+    ],
+    ACL: {},
+    _version: 1,
+    _in_progress: false,
+  }
+
+  if (video) {
+    return result
+  }
+  else {
+    return { message: "Something went wrong" }
+  }
 })

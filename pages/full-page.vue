@@ -7,8 +7,9 @@ const automationData = ref();
 const selectedSubject = ref("");
 
 const subjects = [
-  { value: "uniform", text: "Uniform" },
   { value: "contentstack", text: "Contentstack" },
+  { value: "live-contentstack", text: "Contentstack Livestreams" },
+  { value: "uniform", text: "Uniform" },
   { value: "mp", text: "MP" },
   { value: "tim", text: "Tim" },
   { value: "headless-creator", text: "Headless Creator" },
@@ -17,8 +18,6 @@ const subjects = [
   { value: "misc-streams", text: "Misc Livestreams" },
   { value: "live-hygraph", text: "Hygraph Livestreams" },
   { value: "alive-and-kicking", text: "Alive and Kicking" },
-  { value: "contentstack", text: "Contentstack" },
-  { value: "live-contentstack", text: "Contentstack Livestreams" },
 ];
 async function fetchVideo() {
   if (!videoId.value) return;
@@ -132,7 +131,11 @@ const date = computed(() => {
             </li>
           </ul>
 
-          <select v-model="selectedSubject" class="tag" @change="setSubject">
+          <select
+            v-model="selectedSubject"
+            class="tag !lowercase"
+            @change="setSubject"
+          >
             <option value="" disabled>subject</option>
             <option
               v-for="subject in subjects"
